@@ -1,0 +1,8 @@
+flask
+Flask-Cors
+Flask-Bcrypt
+Flask-SQLAlchemy
+python-dotenv
+dotenv
+psycopg2-binary
+Flask-Session
