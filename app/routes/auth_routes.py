@@ -1,7 +1,10 @@
 from flask import Blueprint, jsonify, request
-from ..services.auth_service import register_user, login_user, logout_user
+from ..services.auth_service import register_user, login_user, logout_user, create_worker
+from flask import session
+from ..models.user import User
 
 auth_bp = Blueprint('auth', __name__)
+admin_bp = Blueprint('admin', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
@@ -24,6 +27,18 @@ def login():
         return jsonify({"message": "Login successful", "user": user}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+    
+@admin_bp.route('/create-worker', methods=['POST'])
+def add_worker():
+    if session.get('role') != 'admin':
+        return jsonify({"error": "Unauthorized"}), 403
+
+    data = request.get_json()
+    try:
+        result = create_worker(data)
+        return jsonify(result), 201
+    except ValueError as ve:
+        return jsonify({"error": str(ve)}), 400
 @auth_bp.route('/logout', methods=['POST'])
 def logout():  
     try:
