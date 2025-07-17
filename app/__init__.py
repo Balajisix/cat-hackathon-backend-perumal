@@ -7,6 +7,7 @@ from flask_cors import CORS
 from .routes.auth_routes import auth_bp, admin_bp
 from .routes.youtube import youtube_api
 from .routes.drowsy_routes import drowsy_bp
+from .routes.seatbel import seatbelt_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -25,6 +26,7 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix='/api/admin')
     app.register_blueprint(youtube_api)
     app.register_blueprint(drowsy_bp)
+    app.register_blueprint(seatbelt_bp)
     
 
 

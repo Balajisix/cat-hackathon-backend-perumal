@@ -5,7 +5,7 @@ import time
 from util import load_model, detect_drowsiness
 
 drowsy_bp = Blueprint("drowsy", __name__)
-model = load_model("model/best.pt")
+model = load_model("model/drowsy.pt")
 
 drowsy_start_time = None
 last_escalation_time = 0

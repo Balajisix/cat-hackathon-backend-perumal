@@ -49,3 +49,4 @@ license_plate_detector.pt
 uploads/
 yolov8x-model/
 flask_session/
+yolov5/
