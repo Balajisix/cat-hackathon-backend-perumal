@@ -39,6 +39,16 @@ def add_worker():
         return jsonify(result), 201
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 400
+
+@auth_bp.route('/profile', methods=['GET'])
+def profile():
+    user_id = session.get('user_id')
+    if user_id:
+        return jsonify({"message": "Authenticated user", "user_id": user_id}), 200
+    else:
+        return jsonify({"error": "Unauthorized"}), 401
+
+
 @auth_bp.route('/logout', methods=['POST'])
 def logout():  
     try:
