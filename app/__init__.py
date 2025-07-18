@@ -8,6 +8,8 @@ from .routes.auth_routes import auth_bp, admin_bp
 from .routes.youtube import youtube_api
 from .routes.drowsy_routes import drowsy_bp
 from .routes.seatbel import seatbelt_bp
+from .routes.detect_route import detect_bp
+from .routes.object_detect import object_detect_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -27,6 +29,9 @@ def create_app():
     app.register_blueprint(youtube_api)
     app.register_blueprint(drowsy_bp)
     app.register_blueprint(seatbelt_bp)
+    app.register_blueprint(detect_bp)
+    app.register_blueprint(object_detect_bp)
+
     
 
 
